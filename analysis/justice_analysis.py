@@ -118,7 +118,10 @@ def write_player_parquet(features: pd.DataFrame, output_path: str | Path, player
     output = Path(output_path)
     output.parent.mkdir(parents=True, exist_ok=True)
     features = features.copy()
-    features.insert(0, "player_id", player_id)
+    if "player_id" in features.columns:
+        features["player_id"] = player_id
+    else:
+        features.insert(0, "player_id", player_id)
     features.to_parquet(output, index=False)
     return output
 
