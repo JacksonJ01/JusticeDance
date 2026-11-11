@@ -22,10 +22,12 @@ The browser prototype uses a playful placeholder score. The Python analysis laye
 
 ## PyQt6 desktop app
 
-Install `requirements-pyqt6.txt`, ensure a MediaPipe Pose Landmarker `.task` model is available, and run:
+The app is configured to reuse the existing AI Humo environment and model when they are present under your Downloads folder. It searches common AI Humo folder names and looks for `full_model\pose_landmarker_full.task`.
+
+Run it from PowerShell with:
 
 ```text
-python app/justice_dance.py
+./run_justice_dance.ps1
 ```
 
-Choose the downloaded reference video and model, start the camera, then start and stop the dance. The app saves `data/justice_sessions/player_1/` or `player_2/` landmark and feature Parquet files. The reference occupies the main frame and the live camera is composited in the lower-left picture-in-picture region.
+The launcher uses AI Humo's `.venv` so PyQt6, MediaPipe, OpenCV, pandas, and PyArrow are reused instead of duplicated. Choose the downloaded reference video, start the camera, then start and stop the dance. The app saves `data/justice_sessions/player_1/` or `player_2/` landmark and feature Parquet files. The reference occupies the main frame and the live camera is composited in the lower-left picture-in-picture region.

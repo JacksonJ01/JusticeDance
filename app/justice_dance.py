@@ -89,6 +89,14 @@ class JusticeDanceWindow(QMainWindow):
         self.status = QLabel("Reference video: none · Camera: stopped · Features: not recording")
         self.reference_edit = QLineEdit()
         self.model_edit = QLineEdit()
+        candidates = [
+            Path.home() / "Downloads" / "AIHuMo_refactored_v0_2" / "full_model" / "pose_landmarker_full.task",
+            Path.home() / "Downloads" / "Humo_app" / "full_model" / "pose_landmarker_full.task",
+        ]
+        for shared_model in candidates:
+            if shared_model.exists():
+                self.model_edit.setText(str(shared_model))
+                break
         self.player_spin = QSpinBox(); self.player_spin.setRange(1, 2); self.player_spin.setValue(1)
         browse_ref = QPushButton("Choose reference video"); browse_ref.clicked.connect(self.choose_reference)
         browse_model = QPushButton("Choose MediaPipe model"); browse_model.clicked.connect(self.choose_model)
