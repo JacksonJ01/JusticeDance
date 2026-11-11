@@ -1,16 +1,7 @@
-const menuToggle = document.querySelector('.menu-toggle');
-const navigation = document.querySelector('.site-nav');
-
-menuToggle.addEventListener('click', () => {
-  const isOpen = navigation.classList.toggle('is-open');
-  menuToggle.setAttribute('aria-expanded', String(isOpen));
-});
-
-document.querySelectorAll('.site-nav a').forEach((link) => {
-  link.addEventListener('click', () => {
-    navigation.classList.remove('is-open');
-    menuToggle.setAttribute('aria-expanded', 'false');
-  });
-});
-
-document.querySelector('#year').textContent = new Date().getFullYear();
+const input=document.querySelector('#reference-video'),label=document.querySelector('#file-label'),preview=document.querySelector('#preview'),previewVideo=document.querySelector('#preview-video'),stage=document.querySelector('#reference-stage'),cont=document.querySelector('#continue'),room=document.querySelector('#dance-room'),camera=document.querySelector('#camera'),placeholder=document.querySelector('#placeholder'),cameraBtn=document.querySelector('#camera-button'),startBtn=document.querySelector('#start-button'),timer=document.querySelector('#timer'),scoreboard=document.querySelector('#scoreboard');let url,stream,startAt,tick;
+input.addEventListener('change',()=>{const file=input.files[0];if(!file)return;url=URL.createObjectURL(file);label.textContent=file.name;previewVideo.src=url;stage.src=url;preview.classList.remove('hidden');cont.disabled=false});
+document.querySelectorAll('[data-players]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-players]').forEach(x=>x.classList.remove('active'));b.classList.add('active')}));
+cont.addEventListener('click',()=>{room.classList.remove('hidden');room.scrollIntoView({behavior:'smooth'})});
+cameraBtn.addEventListener('click',async()=>{if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;camera.srcObject=null;placeholder.classList.remove('hidden');cameraBtn.textContent='Start camera';return}try{stream=await navigator.mediaDevices.getUserMedia({video:true,audio:false});camera.srcObject=stream;placeholder.classList.add('hidden');cameraBtn.textContent='Stop camera'}catch{placeholder.innerHTML='Camera unavailable<br><small>You can still dance off-camera.</small>'}});
+startBtn.addEventListener('click',()=>{if(!startAt){startAt=Date.now();stage.play().catch(()=>{});startBtn.textContent='Finish dance';tick=setInterval(()=>{let s=Math.floor((Date.now()-startAt)/1000);timer.textContent=`${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`},250);return}clearInterval(tick);stage.pause();const value=Math.floor(650+Math.random()*350);document.querySelector('#score').textContent=String(value).padStart(3,'0');document.querySelector('#message').textContent=value>900?'Suspiciously excellent.':value>750?'The algorithm approves.':'Room for more dramatic arms.';scoreboard.classList.remove('hidden');scoreboard.scrollIntoView({behavior:'smooth'})});
+document.querySelector('#again').addEventListener('click',()=>location.reload());document.querySelector('#year').textContent=new Date().getFullYear();

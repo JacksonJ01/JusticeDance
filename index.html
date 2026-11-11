@@ -1,58 +1,9 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Justice Dance — movement, music, and community in motion." />
-    <title>Justice Dance</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Justice Dance home"><span>Justice</span> Dance</a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#sessions">Sessions</a>
-        <a href="#contact" class="nav-cta">Join the movement</a>
-      </nav>
-    </header>
-
-    <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow">Movement with meaning</p>
-          <h1 id="hero-title">Make space.<br /><em>Move forward.</em></h1>
-          <p class="hero-text">Justice Dance brings people together through rhythm, expression, and the belief that every body belongs in the room.</p>
-          <a class="button button-dark" href="#contact">Find your next step <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="hero-art" aria-label="Abstract orange and blue movement artwork" role="img">
-          <div class="sun"></div><div class="arc arc-one"></div><div class="arc arc-two"></div><div class="dot dot-one"></div><div class="dot dot-two"></div>
-          <p>dance<br />is a<br /><strong>right</strong></p>
-        </div>
-      </section>
-
-      <section id="about" class="statement section-grid">
-        <p class="section-label">01 / Why we move</p>
-        <div><h2>Joy is a practice.<br />Justice is, too.</h2><p>We create welcoming spaces where dance can be celebration, connection, and a way to imagine a more open future together.</p></div>
-      </section>
-
-      <section id="sessions" class="sessions">
-        <div class="section-heading"><p class="section-label">02 / Come as you are</p><h2>Find your rhythm.</h2></div>
-        <div class="session-list">
-          <article><span>01</span><div><h3>Open Floor</h3><p>All levels · Weekly</p></div><a href="#contact" aria-label="Learn about Open Floor">↗</a></article>
-          <article><span>02</span><div><h3>Community Choreo</h3><p>Beginner friendly · Monthly</p></div><a href="#contact" aria-label="Learn about Community Choreo">↗</a></article>
-          <article><span>03</span><div><h3>Justice in Motion</h3><p>Workshops · By invitation</p></div><a href="#contact" aria-label="Learn about Justice in Motion">↗</a></article>
-        </div>
-      </section>
-
-      <section id="contact" class="contact"><p class="section-label">03 / Stay in motion</p><h2>Ready when<br /><em>you are.</em></h2><a class="button button-light" href="mailto:hello@justicedance.org">hello@justicedance.org <span aria-hidden="true">↗</span></a></section>
-    </main>
-
-    <footer><span>© <span id="year"></span> Justice Dance</span><span>Made for movement.</span></footer>
-    <script src="script.js"></script>
-  </body>
-</html>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Justice Dance — Dance It. Judge It.</title><link rel="stylesheet" href="styles.css"></head>
+<body><header><a class="logo" href="#top"><span>Justice</span> Dance</a><span>Dance it. Judge it. <b>Fairly-ish.</b></span><a href="#how">How it works ↓</a></header>
+<main id="top"><section class="hero"><div><small>THE EXTREMELY UNOFFICIAL DANCE GAME</small><h1>Dance like<br><em>nobody's scoring.</em></h1><p>Upload a downloaded dance video, hit play, and let Justice Dance compare your normalized moves. One player, two players, one questionable score.</p><a class="button dark" href="#setup">Start a dance ↘</a></div><div class="hero-art"><strong>NO<br>JUDGMENT*</strong><div>🕺</div><small>*There is absolutely judgment. It is algorithmic.</small></div></section>
+<section id="setup" class="panel"><div class="heading"><div><small>01 / CHOOSE YOUR CHAOS</small><h2>Set up your dance.</h2></div><b>1 <i>/</i> 3</b></div><div class="setup"><label class="upload"><span>＋</span><strong id="file-label">Upload your dance video</strong><small>MP4, WebM, or MOV · stays on this device</small><input id="reference-video" type="file" accept="video/*"></label><div class="players"><b>Players</b><div><button class="active" data-players="1">1 player</button><button data-players="2">2 players</button></div><small>Two players means twice the moves<br>and twice the excuses.</small></div></div><div id="preview" class="preview hidden"><video id="preview-video" controls></video><div><b id="video-name">Ready to dance</b><p>Reference video loaded. Camera feed appears in the dance room.</p></div></div><button id="continue" class="button orange" disabled>Continue to dance room →</button></section>
+<section id="dance-room" class="panel hidden"><div class="heading"><div><small>02 / FOLLOW THE LEADER</small><h2>Dance room.</h2></div><b class="live">● Local play</b></div><div class="stage"><div><video id="reference-stage" loop></video><label>REFERENCE</label></div><div class="player"><video id="camera" autoplay muted playsinline></video><div id="placeholder">Camera preview<br><small>Start camera to enable</small></div><label>PLAYER 1</label></div></div><div class="controls"><button id="camera-button" class="button dark">Start camera</button><button id="start-button" class="button orange">Start dance</button><strong id="timer">00:00</strong></div><small>Camera access is optional. You can dance off-camera.</small></section>
+<section id="scoreboard" class="score hidden"><div><small>03 / THE RULING</small><h2>Your verdict is in.</h2></div><div class="score-card"><small>Justice score</small><strong id="score">000</strong><span id="message">The algorithm has thoughts.</span></div><button id="again" class="button dark">Dance again ↻</button></section>
+<section id="how" class="how"><small>HOW IT WORKS</small><div><article><b>01</b><h3>Upload</h3><p>Choose a downloaded dance video.</p></article><article><b>02</b><h3>Normalize</h3><p>Pose landmarks are centered and scaled to each dancer's torso.</p></article><article><b>03</b><h3>Get judged</h3><p>Live features are matched against the reference and scored.</p></article></div></section></main><footer>© <span id="year"></span> Justice Dance <span>Made for living rooms everywhere.</span></footer><script src="script.js"></script></body></html>
